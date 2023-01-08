@@ -113,3 +113,22 @@ print("The calculated values of nu is:", nu)
 # Anomaly detection dhe Classification si ML Algorithms
 model = svm.OneClassSVM(nu=nu, kernel='rbf', gamma=0.00005)
 model.fit(train_data)
+
+# Parashikimi i vlerave dhe detektimi i anomalive
+values_preds = model.predict(train_data)
+values_targs = train_target
+anomalies = train_data[values_preds == -1]
+print("Number of anomalies detected: ", len(anomalies))
+
+# Analizimi i vlerave te fituara
+print("----- Display of prediction results: -----")
+for i in range(0, values_preds.size - 1):
+    if values_preds[i] == -1:
+        print("Attack detected!!! Value of prediction: ", values_preds[i])
+    else:
+        print("Normal value: ", values_preds[i])
+
+
+output_file = r"C:\Users\Administrator\OneDrive\Desktop\one_class_svm_2.model"
+
+joblib.dump(model, outputfile, compress=9)
