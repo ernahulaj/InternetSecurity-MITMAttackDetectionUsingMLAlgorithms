@@ -51,3 +51,17 @@ read_data = pd.concat([read_data,data],axis=1)
 print(read_data)
 print(read_data.info())
 
+data1 = pd.DataFrame(read_data['encryption'])
+print(hash_col(data1, 'encryption',5))
+read_data = pd.concat([read_data,data1],axis=1)
+
+data2 = pd.DataFrame(read_data['connection_mode'])
+print(hash_col(data2, 'connection_mode',8))
+read_data = pd.concat([read_data,data2],axis=1)
+
+#Filtrimi per te perfshire vetem kolonat qe kane vleren 0 
+target=read_data['result']
+outliers = target[target == 0]  
+print("outliers.shape", outliers.shape)  
+print("outlier fraction", outliers.shape[0]/target.shape[0])
+
