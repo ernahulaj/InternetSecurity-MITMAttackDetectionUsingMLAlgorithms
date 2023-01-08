@@ -100,3 +100,16 @@ read_data = read_data[applicable_features1]
 read_data.info()
 print("read_data.shape ", read_data.shape)
 print(read_data)
+
+# Ndarja e read_data dhe target data ne training dhe test sets
+# Parametri train_size percakton madhesine e training set si 80% e data
+train_data, test_data, train_target, test_target = train_test_split(read_data, target, train_size=0.8)
+print(test_data)
+
+# Proporcioni i outliers ne dataset
+nu = outliers.shape[0] / target.shape[0]
+print("The calculated values of nu is:", nu)
+
+# Anomaly detection dhe Classification si ML Algorithms
+model = svm.OneClassSVM(nu=nu, kernel='rbf', gamma=0.00005)
+model.fit(train_data)
