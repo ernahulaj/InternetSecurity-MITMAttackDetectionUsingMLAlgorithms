@@ -131,4 +131,4 @@ for i in range(0, values_preds.size - 1):
 
 output_file = r"C:\Users\Administrator\OneDrive\Desktop\one_class_svm_2.model"
 
-joblib.dump(model, outputfile, compress=9)
+joblib.dump(model, output_file, compress=9)
