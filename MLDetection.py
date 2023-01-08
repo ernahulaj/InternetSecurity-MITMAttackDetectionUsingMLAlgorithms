@@ -65,3 +65,38 @@ outliers = target[target == 0]
 print("outliers.shape", outliers.shape)  
 print("outlier fraction", outliers.shape[0]/target.shape[0])
 
+read_data.info()
+
+# Lista e emrave te kolonave qe do te permbaje DataFrame
+applicable_features1 = ["authentication_0",
+                        "authentication_1",
+                        "authentication_3",
+                        "authentication_3",
+                        "authentication_4",
+                        "authentication_5",
+                        "authentication_6",
+                        "authentication_7",
+                        "encryption_0",
+                        "encryption_1",
+                        "encryption_2",
+                        "encryption_3",
+                        "encryption_4",
+                        "connection_mode_0",
+                        "connection_mode_1",
+                        "connection_mode_2",
+                        "phy_type_id",
+                        "capabilities",
+                        "channel_center_freq_khz",
+                        "mac"]
+
+# Normalizimi i te dhenave (konvertimi mes tipeve te te dhenave per eficience)
+read_data['channel_center_freq_khz'] = read_data['channel_center_freq_khz'].astype(float)
+read_data['mac'] = read_data['mac'].astype(float)
+read_data['phy_type_id'] = read_data['phy_type_id'].astype(float)
+read_data['capabilities'] = read_data['capabilities'].astype(float)
+
+# Filtrimi i kolonave
+read_data = read_data[applicable_features1]
+read_data.info()
+print("read_data.shape ", read_data.shape)
+print(read_data)
